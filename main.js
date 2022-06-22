@@ -94,16 +94,24 @@ let app = {
         listMusic.innerHTML = itemSong.join(" ")
         audio.src = musicData[indexSongPlay].song
         nameSongTitle.innerHTML = musicData[indexSongPlay].nameSong;
+
+        let itemSongbtn = document.querySelectorAll(".item-song");
+            itemSongbtn.forEach((songPlay,index) => {
+                songPlay.addEventListener("click",e => {
+                    indexSongPlay = index
+                    audio.src = musicData[indexSongPlay].song
+                    audio.play()
+                    this.handleDataChange()
+                })
+            })
     },
     handleControll(){
         btnPalay.addEventListener("click", e => {
             e.stopImmediatePropagation()
             if(e.target.id === "playSong"){
                 audio.play()
-                btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
                 this.handleDataChange()
             } else {
-                btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="playSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.394 12L10 7.737v8.526L16.394 12zm2.982.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z"/></svg>`;
                 audio.pause()
                 this.handleDataChange()
             }
@@ -111,23 +119,17 @@ let app = {
         
         btnPrev.addEventListener("click",e => {
             indexSongPlay--
-
             if(e.target.id === "btnPrevSetTarget"){
                 e.stopImmediatePropagation()
                 console.log(indexSongPlay)
-                if(audio.paused === true){
-                    audio.pause()
-                } else {
-                    btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
-                }
-                
                 if(indexSongPlay < 0){
                     indexSongPlay = 0
                     audio.src = musicData[indexSongPlay].song
+                    audio.play()
                 } else {
                     audio.src = musicData[indexSongPlay].song
+                    audio.play()
                 }
-                
                 this.handleDataChange()
             }
         });
@@ -146,7 +148,6 @@ let app = {
                     audio.play()
                 }
                 
-            btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
                 this.handleDataChange()
             }
         });
@@ -156,7 +157,6 @@ let app = {
                 audio.src = musicData[indexSongPlay].song;
                 audio.loop = true
                 audio.play()
-                btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
                 _repeat = !_repeat
                 this.handleDataChange()
             } else {
@@ -169,11 +169,9 @@ let app = {
                 indexSongPlay = Math.floor(Math.random() * musicData.length)
                 audio.src = musicData[indexSongPlay].song
                 audio.play()
-                btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
                 this.handleDataChange()
             }
         })
-
     },
     handleRangerSong(){
         // song play
@@ -192,18 +190,22 @@ let app = {
         // end point
         audio.addEventListener("ended",e => {
             indexSongPlay++
+            audio.src = musicData[indexSongPlay].song
+            audio.play()
             if(indexSongPlay > musicData.length){
                  indexSongPlay = 0
-            }
+                 audio.paused()
+            } 
+            this.handleDataChange()
         })
     },
     handleDataChange(){
-        console.log(audio.paused)
-
         if(audio.paused === false){
-            iconHeaderRotate.style.animation = "rotate 1.5s linear infinite"
+            iconHeaderRotate.style.animation = "rotate 1.5s linear infinite";
+            btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="stopSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 5h2v14H6V5zm10 0h2v14h-2V5z" /></svg>`;
         } else {
-            iconHeaderRotate.style.animation = ""
+            iconHeaderRotate.style.animation = "";
+            btnPalay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" id="playSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.394 12L10 7.737v8.526L16.394 12zm2.982.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z"/></svg>`;
         }
         nameSongTitle.innerHTML = musicData[indexSongPlay].nameSong;
     },
@@ -215,6 +217,5 @@ let app = {
 }
 
 app.start()
-
 
 
