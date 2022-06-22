@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+   
+    <div class="wrapper-music-app">
+        <h1 class="song-play">
+            <span>Mười ngàn năm - pc</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15 4.582V12a3 3 0 1 1-2-2.83V2.05c5.053.501 9 4.765 9 9.95 0 5.523-4.477 10-10 10S2 17.523 2 12c0-5.185 3.947-9.449 9-9.95v2.012A8.001 8.001 0 0 0 12 20a8 8 0 0 0 3-15.418z"/></svg>
+        </h1>
+        <div class="control-song-play">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1515010137531-66995c7f40e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c29uZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" class="img-song">
+            </div>
+            <div class="area-controll" id="btnRepeat">
+                <span class="icon-controll">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="btnRepeatSetTarget" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6 4h15a1 1 0 0 1 1 1v7h-2V6H6v3L1 5l5-4v3zm12 16H3a1 1 0 0 1-1-1v-7h2v6h14v-3l5 4-5 4v-3z"/></svg>
+                </span>
+                <span class="icon-controll" id="btnPrev">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="btnPrevSetTarget" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.667l9.223-6.149a.5.5 0 0 1 .777.416v14.132a.5.5 0 0 1-.777.416L12 13.333v5.733a.5.5 0 0 1-.777.416L.624 12.416a.5.5 0 0 1 0-.832l10.599-7.066a.5.5 0 0 1 .777.416v5.733zm-2 5.596V7.737L3.606 12 10 16.263zm10 0V7.737L13.606 12 20 16.263z"/></svg>
+                </span>
+                <span class="icon-controll" id="btnPlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="playSong" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.394 12L10 7.737v8.526L16.394 12zm2.982.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z"/></svg>
+                </span>
+                <span class="icon-controll" id="btnNext">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="btnNextSetTarget" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.333l-9.223 6.149A.5.5 0 0 1 2 19.066V4.934a.5.5 0 0 1 .777-.416L12 10.667V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832l-10.599 7.066a.5.5 0 0 1-.777-.416v-5.733zM10.394 12L4 7.737v8.526L10.394 12zM14 7.737v8.526L20.394 12 14 7.737z"/></svg>
+                </span>
+                <span class="icon-controll" id="btnShuffle">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="btnShuffleSetTarget" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18 17.883V16l5 3-5 3v-2.09a9 9 0 0 1-6.997-5.365L11 14.54l-.003.006A9 9 0 0 1 2.725 20H2v-2h.725a7 7 0 0 0 6.434-4.243L9.912 12l-.753-1.757A7 7 0 0 0 2.725 6H2V4h.725a9 9 0 0 1 8.272 5.455L11 9.46l.003-.006A9 9 0 0 1 18 4.09V2l5 3-5 3V6.117a7 7 0 0 0-5.159 4.126L12.088 12l.753 1.757A7 7 0 0 0 18 17.883z"/></svg>
+                </span>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="0" class="slider" id="song_range">
+            </div>
+        </div>
+        <h2 class="list-music__title">Bộ sưu tập của bạn</h2>
+        <div class="list-music">
+            <div class="item-song">
+                <h3 class="song_name">Mười Ngàn Năm</h3>
+                <span class="item-song__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.535V3h8v2h-6v12a4 4 0 1 1-2-3.465zM10 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                </span>
+            </div>
+            <div class="item-song">
+                <h3 class="song_name">một thời đã qua lân nhã</h3>
+                <span class="item-song__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.535V3h8v2h-6v12a4 4 0 1 1-2-3.465zM10 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                </span>
+            </div>
+            <div class="item-song">
+                <h3 class="song_name">Tuổi đá buồn</h3>
+                <span class="item-song__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.535V3h8v2h-6v12a4 4 0 1 1-2-3.465zM10 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                </span>
+            </div>
+        </div>
+        <audio  src="./assets/audio/PC-10-Ngan-Nam-Prod-Duckie-Official-Audio-mp3-PC.mp3" id="audio"></audio>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
