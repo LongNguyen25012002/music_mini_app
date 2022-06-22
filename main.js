@@ -64,7 +64,6 @@ let musicData = [
     },
 ]
 
-
 let listMusic = document.querySelector(".list-music");
 let btnPalay = document.querySelector("#btnPlay");
 let btnPrev = document.querySelector("#btnPrev");
@@ -78,13 +77,14 @@ let audio = document.querySelector("#audio");
 let indexSongPlay = 0;
 audio.volume = 0.8
 let _repeat = true
+let _Shuffle = true
 
 
 let app = {
     UiList_Musci_Render(){
 
         let itemSong = musicData.map((itemSong,index) => {
-            return ` <div class="item-song">
+            return ` <div class="item-song ${indexSongPlay === index ? "active" : ""}">
             <h3 class="song_name">${itemSong.nameSong}</h3>
             <span class="item-song__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.535V3h8v2h-6v12a4 4 0 1 1-2-3.465zM10 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
@@ -165,11 +165,15 @@ let app = {
         }),
 
         btnShuffle.addEventListener("click",e => {
-            if(e.target.id === "btnShuffleSetTarget"){
+            if(e.target.id === "btnShuffleSetTarget" && _Shuffle){
                 indexSongPlay = Math.floor(Math.random() * musicData.length)
                 audio.src = musicData[indexSongPlay].song
                 audio.play()
                 this.handleDataChange()
+                _Shuffle = !_Shuffle
+                btnShuffle.classList.add("active")
+            } else {
+                btnShuffle.classList.remove("active")
             }
         })
     },
@@ -184,7 +188,6 @@ let app = {
         // skeep
         song_range.addEventListener("change",e => {
             audio.currentTime = song_range.value * audio.duration / 100;
-        console.log(audio.paused)
         })
 
         // end point

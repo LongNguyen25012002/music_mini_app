@@ -178,5 +178,15 @@ body{
   .item-song:hover .song_name,
   .item-song:hover svg{
      color: #151935;
+     opacity: 0.7;
+  }
+
+  .item-song.active .song_name,
+  .item-song.active .song_name{
+    color: #151935;
     opacity: 0.7;
+  }
+
+  .btnShuffle.active svg{
+    fill: #645cff;
   }
